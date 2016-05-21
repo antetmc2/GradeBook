@@ -61,6 +61,33 @@ namespace GradeBook.BLL.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Matični broj škole nije ispravno unesen..
+        /// </summary>
+        internal static string InvalidMbr {
+            get {
+                return ResourceManager.GetString("InvalidMbr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OIB nije ispravno unesen..
+        /// </summary>
+        internal static string InvalidOIB {
+            get {
+                return ResourceManager.GetString("InvalidOIB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Broj telefona nije ispravno unesen..
+        /// </summary>
+        internal static string InvalidPhone {
+            get {
+                return ResourceManager.GetString("InvalidPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nema nijednog podatka..
         /// </summary>
         internal static string NoDataFound {
