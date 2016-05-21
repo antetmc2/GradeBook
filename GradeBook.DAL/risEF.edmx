@@ -1,0 +1,862 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="risModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Obavijesti">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tekst" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="vrijemeObjavljivanja" Type="datetime" Nullable="false" />
+          <Property Name="IDobjavljivaca" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ObavijestiRazred">
+          <Key>
+            <PropertyRef Name="IDobavijesti" />
+            <PropertyRef Name="IDrazreda" />
+          </Key>
+          <Property Name="IDobavijesti" Type="int" Nullable="false" />
+          <Property Name="IDrazreda" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ocjena">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDucenika" Type="int" Nullable="false" />
+          <Property Name="IDrubrike" Type="int" Nullable="false" />
+          <Property Name="ocjena" Type="smallint" />
+          <Property Name="biljeska" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="vrijemeUnosa" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Predmet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="imePredmeta" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="razinaRazreda" Type="smallint" Nullable="false" />
+          <Property Name="satiTjedno" Type="smallint" Nullable="false" />
+          <Property Name="jeObavezan" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Razred">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="imeRazreda" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="razina" Type="smallint" Nullable="false" />
+          <Property Name="brojUcenika" Type="int" Nullable="false" />
+          <Property Name="IDsmjer" Type="int" Nullable="false" />
+          <Property Name="IDskole" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Razrednik">
+          <Key>
+            <PropertyRef Name="IDnastavnik" />
+            <PropertyRef Name="IDrazred" />
+          </Key>
+          <Property Name="IDnastavnik" Type="int" Nullable="false" />
+          <Property Name="IDrazred" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RazredPredmet">
+          <Key>
+            <PropertyRef Name="IDpredmet" />
+            <PropertyRef Name="IDrazred" />
+          </Key>
+          <Property Name="IDpredmet" Type="int" Nullable="false" />
+          <Property Name="IDrazred" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rubrika">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDpredmeta" Type="int" Nullable="false" />
+          <Property Name="tekstRubrike" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Skola">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazivSkole" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="adresa" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="mBrSkole" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="oibSkole" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="telefon" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Smjer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="imeSmjera" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipZaposlenika">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazivTipa" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ucenik">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ime" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="prezime" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="datumRodjenja" Type="datetime" Nullable="false" />
+          <Property Name="oib" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="brojTelefona" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="brojMobitela" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="razred" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zaposlenik">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ime" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="prezime" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="oib" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="datumPocetkaRada" Type="datetime" Nullable="false" />
+          <Property Name="IDtipa" Type="int" Nullable="false" />
+          <Property Name="IDskole" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Obavijesti_Zaposlenik">
+          <End Role="Zaposlenik" Type="Self.Zaposlenik" Multiplicity="1" />
+          <End Role="Obavijesti" Type="Self.Obavijesti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zaposlenik">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Obavijesti">
+              <PropertyRef Name="IDobjavljivaca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ObavijestiRazred_Obavijesti">
+          <End Role="Obavijesti" Type="Self.Obavijesti" Multiplicity="1" />
+          <End Role="ObavijestiRazred" Type="Self.ObavijestiRazred" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obavijesti">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ObavijestiRazred">
+              <PropertyRef Name="IDobavijesti" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ObavijestiRazred_Razred">
+          <End Role="Razred" Type="Self.Razred" Multiplicity="1" />
+          <End Role="ObavijestiRazred" Type="Self.ObavijestiRazred" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Razred">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ObavijestiRazred">
+              <PropertyRef Name="IDrazreda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ocjena_Rubrika">
+          <End Role="Rubrika" Type="Self.Rubrika" Multiplicity="1" />
+          <End Role="Ocjena" Type="Self.Ocjena" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rubrika">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Ocjena">
+              <PropertyRef Name="IDrubrike" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ocjena_Ucenik">
+          <End Role="Ucenik" Type="Self.Ucenik" Multiplicity="1" />
+          <End Role="Ocjena" Type="Self.Ocjena" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ucenik">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Ocjena">
+              <PropertyRef Name="IDucenika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Razred_Skola">
+          <End Role="Skola" Type="Self.Skola" Multiplicity="1" />
+          <End Role="Razred" Type="Self.Razred" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skola">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Razred">
+              <PropertyRef Name="IDskole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Razred_Smjer">
+          <End Role="Smjer" Type="Self.Smjer" Multiplicity="1" />
+          <End Role="Razred" Type="Self.Razred" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Smjer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Razred">
+              <PropertyRef Name="IDsmjer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Razrednik_Razred">
+          <End Role="Razred" Type="Self.Razred" Multiplicity="1" />
+          <End Role="Razrednik" Type="Self.Razrednik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Razred">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Razrednik">
+              <PropertyRef Name="IDrazred" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Razrednik_Zaposlenik">
+          <End Role="Zaposlenik" Type="Self.Zaposlenik" Multiplicity="1" />
+          <End Role="Razrednik" Type="Self.Razrednik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zaposlenik">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Razrednik">
+              <PropertyRef Name="IDnastavnik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RazredPredmet_Predmet">
+          <End Role="Predmet" Type="Self.Predmet" Multiplicity="1" />
+          <End Role="RazredPredmet" Type="Self.RazredPredmet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Predmet">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RazredPredmet">
+              <PropertyRef Name="IDpredmet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RazredPredmet_Razred">
+          <End Role="Razred" Type="Self.Razred" Multiplicity="1" />
+          <End Role="RazredPredmet" Type="Self.RazredPredmet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Razred">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RazredPredmet">
+              <PropertyRef Name="IDrazred" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rubrika_Predmet">
+          <End Role="Predmet" Type="Self.Predmet" Multiplicity="1" />
+          <End Role="Rubrika" Type="Self.Rubrika" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Predmet">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Rubrika">
+              <PropertyRef Name="IDpredmeta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ucenik_Razred">
+          <End Role="Razred" Type="Self.Razred" Multiplicity="1" />
+          <End Role="Ucenik" Type="Self.Ucenik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Razred">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Ucenik">
+              <PropertyRef Name="razred" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zaposlenik_Skola">
+          <End Role="Skola" Type="Self.Skola" Multiplicity="1" />
+          <End Role="Zaposlenik" Type="Self.Zaposlenik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skola">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Zaposlenik">
+              <PropertyRef Name="IDskole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zaposlenik_TipZaposlenika">
+          <End Role="TipZaposlenika" Type="Self.TipZaposlenika" Multiplicity="1" />
+          <End Role="Zaposlenik" Type="Self.Zaposlenik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipZaposlenika">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Zaposlenik">
+              <PropertyRef Name="IDtipa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="risModelStoreContainer">
+          <EntitySet Name="Obavijesti" EntityType="Self.Obavijesti" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ObavijestiRazred" EntityType="Self.ObavijestiRazred" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ocjena" EntityType="Self.Ocjena" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Predmet" EntityType="Self.Predmet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Razred" EntityType="Self.Razred" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Razrednik" EntityType="Self.Razrednik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RazredPredmet" EntityType="Self.RazredPredmet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rubrika" EntityType="Self.Rubrika" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Skola" EntityType="Self.Skola" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Smjer" EntityType="Self.Smjer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipZaposlenika" EntityType="Self.TipZaposlenika" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ucenik" EntityType="Self.Ucenik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zaposlenik" EntityType="Self.Zaposlenik" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Obavijesti_Zaposlenik" Association="Self.FK_Obavijesti_Zaposlenik">
+            <End Role="Zaposlenik" EntitySet="Zaposlenik" />
+            <End Role="Obavijesti" EntitySet="Obavijesti" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ObavijestiRazred_Obavijesti" Association="Self.FK_ObavijestiRazred_Obavijesti">
+            <End Role="Obavijesti" EntitySet="Obavijesti" />
+            <End Role="ObavijestiRazred" EntitySet="ObavijestiRazred" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ObavijestiRazred_Razred" Association="Self.FK_ObavijestiRazred_Razred">
+            <End Role="Razred" EntitySet="Razred" />
+            <End Role="ObavijestiRazred" EntitySet="ObavijestiRazred" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ocjena_Rubrika" Association="Self.FK_Ocjena_Rubrika">
+            <End Role="Rubrika" EntitySet="Rubrika" />
+            <End Role="Ocjena" EntitySet="Ocjena" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ocjena_Ucenik" Association="Self.FK_Ocjena_Ucenik">
+            <End Role="Ucenik" EntitySet="Ucenik" />
+            <End Role="Ocjena" EntitySet="Ocjena" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Razred_Skola" Association="Self.FK_Razred_Skola">
+            <End Role="Skola" EntitySet="Skola" />
+            <End Role="Razred" EntitySet="Razred" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Razred_Smjer" Association="Self.FK_Razred_Smjer">
+            <End Role="Smjer" EntitySet="Smjer" />
+            <End Role="Razred" EntitySet="Razred" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Razrednik_Razred" Association="Self.FK_Razrednik_Razred">
+            <End Role="Razred" EntitySet="Razred" />
+            <End Role="Razrednik" EntitySet="Razrednik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Razrednik_Zaposlenik" Association="Self.FK_Razrednik_Zaposlenik">
+            <End Role="Zaposlenik" EntitySet="Zaposlenik" />
+            <End Role="Razrednik" EntitySet="Razrednik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RazredPredmet_Predmet" Association="Self.FK_RazredPredmet_Predmet">
+            <End Role="Predmet" EntitySet="Predmet" />
+            <End Role="RazredPredmet" EntitySet="RazredPredmet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RazredPredmet_Razred" Association="Self.FK_RazredPredmet_Razred">
+            <End Role="Razred" EntitySet="Razred" />
+            <End Role="RazredPredmet" EntitySet="RazredPredmet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rubrika_Predmet" Association="Self.FK_Rubrika_Predmet">
+            <End Role="Predmet" EntitySet="Predmet" />
+            <End Role="Rubrika" EntitySet="Rubrika" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ucenik_Razred" Association="Self.FK_Ucenik_Razred">
+            <End Role="Razred" EntitySet="Razred" />
+            <End Role="Ucenik" EntitySet="Ucenik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zaposlenik_Skola" Association="Self.FK_Zaposlenik_Skola">
+            <End Role="Skola" EntitySet="Skola" />
+            <End Role="Zaposlenik" EntitySet="Zaposlenik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zaposlenik_TipZaposlenika" Association="Self.FK_Zaposlenik_TipZaposlenika">
+            <End Role="TipZaposlenika" EntitySet="TipZaposlenika" />
+            <End Role="Zaposlenik" EntitySet="Zaposlenik" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="risModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Obavijesti">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tekst" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="vrijemeObjavljivanja" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IDobjavljivaca" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Zaposlenik" Relationship="Self.FK_Obavijesti_Zaposlenik" FromRole="Obavijesti" ToRole="Zaposlenik" />
+          <NavigationProperty Name="Razred" Relationship="Self.ObavijestiRazred" FromRole="Obavijesti" ToRole="Razred" />
+        </EntityType>
+        <EntityType Name="Ocjena">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDucenika" Type="Int32" Nullable="false" />
+          <Property Name="IDrubrike" Type="Int32" Nullable="false" />
+          <Property Name="ocjena1" Type="Int16" />
+          <Property Name="biljeska" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="vrijemeUnosa" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Rubrika" Relationship="Self.FK_Ocjena_Rubrika" FromRole="Ocjena" ToRole="Rubrika" />
+          <NavigationProperty Name="Ucenik" Relationship="Self.FK_Ocjena_Ucenik" FromRole="Ocjena" ToRole="Ucenik" />
+        </EntityType>
+        <EntityType Name="Predmet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="imePredmeta" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="razinaRazreda" Type="Int16" Nullable="false" />
+          <Property Name="satiTjedno" Type="Int16" Nullable="false" />
+          <Property Name="jeObavezan" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Rubrika" Relationship="Self.FK_Rubrika_Predmet" FromRole="Predmet" ToRole="Rubrika" />
+          <NavigationProperty Name="Razred" Relationship="Self.RazredPredmet" FromRole="Predmet" ToRole="Razred" />
+        </EntityType>
+        <EntityType Name="Razred">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="imeRazreda" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="razina" Type="Int16" Nullable="false" />
+          <Property Name="brojUcenika" Type="Int32" Nullable="false" />
+          <Property Name="IDsmjer" Type="Int32" Nullable="false" />
+          <Property Name="IDskole" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Skola" Relationship="Self.FK_Razred_Skola" FromRole="Razred" ToRole="Skola" />
+          <NavigationProperty Name="Smjer" Relationship="Self.FK_Razred_Smjer" FromRole="Razred" ToRole="Smjer" />
+          <NavigationProperty Name="Ucenik" Relationship="Self.FK_Ucenik_Razred" FromRole="Razred" ToRole="Ucenik" />
+          <NavigationProperty Name="Obavijesti" Relationship="Self.ObavijestiRazred" FromRole="Razred" ToRole="Obavijesti" />
+          <NavigationProperty Name="Zaposlenik" Relationship="Self.Razrednik" FromRole="Razred" ToRole="Zaposlenik" />
+          <NavigationProperty Name="Predmet" Relationship="Self.RazredPredmet" FromRole="Razred" ToRole="Predmet" />
+        </EntityType>
+        <EntityType Name="Rubrika">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDpredmeta" Type="Int32" Nullable="false" />
+          <Property Name="tekstRubrike" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Ocjena" Relationship="Self.FK_Ocjena_Rubrika" FromRole="Rubrika" ToRole="Ocjena" />
+          <NavigationProperty Name="Predmet" Relationship="Self.FK_Rubrika_Predmet" FromRole="Rubrika" ToRole="Predmet" />
+        </EntityType>
+        <EntityType Name="Skola">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nazivSkole" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="adresa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mBrSkole" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="oibSkole" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="telefon" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Razred" Relationship="Self.FK_Razred_Skola" FromRole="Skola" ToRole="Razred" />
+          <NavigationProperty Name="Zaposlenik" Relationship="Self.FK_Zaposlenik_Skola" FromRole="Skola" ToRole="Zaposlenik" />
+        </EntityType>
+        <EntityType Name="Smjer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="imeSmjera" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Razred" Relationship="Self.FK_Razred_Smjer" FromRole="Smjer" ToRole="Razred" />
+        </EntityType>
+        <EntityType Name="TipZaposlenika">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nazivTipa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Zaposlenik" Relationship="Self.FK_Zaposlenik_TipZaposlenika" FromRole="TipZaposlenika" ToRole="Zaposlenik" />
+        </EntityType>
+        <EntityType Name="Ucenik">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ime" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="prezime" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="datumRodjenja" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="oib" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="brojTelefona" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="brojMobitela" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="razred" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ocjena" Relationship="Self.FK_Ocjena_Ucenik" FromRole="Ucenik" ToRole="Ocjena" />
+          <NavigationProperty Name="Razred1" Relationship="Self.FK_Ucenik_Razred" FromRole="Ucenik" ToRole="Razred" />
+        </EntityType>
+        <EntityType Name="Zaposlenik">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ime" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="prezime" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="oib" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="datumPocetkaRada" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IDtipa" Type="Int32" Nullable="false" />
+          <Property Name="IDskole" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Obavijesti" Relationship="Self.FK_Obavijesti_Zaposlenik" FromRole="Zaposlenik" ToRole="Obavijesti" />
+          <NavigationProperty Name="Skola" Relationship="Self.FK_Zaposlenik_Skola" FromRole="Zaposlenik" ToRole="Skola" />
+          <NavigationProperty Name="TipZaposlenika" Relationship="Self.FK_Zaposlenik_TipZaposlenika" FromRole="Zaposlenik" ToRole="TipZaposlenika" />
+          <NavigationProperty Name="Razred" Relationship="Self.Razrednik" FromRole="Zaposlenik" ToRole="Razred" />
+        </EntityType>
+        <Association Name="FK_Obavijesti_Zaposlenik">
+          <End Role="Zaposlenik" Type="Self.Zaposlenik" Multiplicity="1" />
+          <End Role="Obavijesti" Type="Self.Obavijesti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zaposlenik">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Obavijesti">
+              <PropertyRef Name="IDobjavljivaca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ocjena_Rubrika">
+          <End Role="Rubrika" Type="Self.Rubrika" Multiplicity="1" />
+          <End Role="Ocjena" Type="Self.Ocjena" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rubrika">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Ocjena">
+              <PropertyRef Name="IDrubrike" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ocjena_Ucenik">
+          <End Role="Ucenik" Type="Self.Ucenik" Multiplicity="1" />
+          <End Role="Ocjena" Type="Self.Ocjena" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ucenik">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Ocjena">
+              <PropertyRef Name="IDucenika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rubrika_Predmet">
+          <End Role="Predmet" Type="Self.Predmet" Multiplicity="1" />
+          <End Role="Rubrika" Type="Self.Rubrika" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Predmet">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Rubrika">
+              <PropertyRef Name="IDpredmeta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Razred_Skola">
+          <End Role="Skola" Type="Self.Skola" Multiplicity="1" />
+          <End Role="Razred" Type="Self.Razred" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skola">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Razred">
+              <PropertyRef Name="IDskole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Razred_Smjer">
+          <End Role="Smjer" Type="Self.Smjer" Multiplicity="1" />
+          <End Role="Razred" Type="Self.Razred" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Smjer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Razred">
+              <PropertyRef Name="IDsmjer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ucenik_Razred">
+          <End Role="Razred" Type="Self.Razred" Multiplicity="1" />
+          <End Role="Ucenik" Type="Self.Ucenik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Razred">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Ucenik">
+              <PropertyRef Name="razred" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zaposlenik_Skola">
+          <End Role="Skola" Type="Self.Skola" Multiplicity="1" />
+          <End Role="Zaposlenik" Type="Self.Zaposlenik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skola">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Zaposlenik">
+              <PropertyRef Name="IDskole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zaposlenik_TipZaposlenika">
+          <End Role="TipZaposlenika" Type="Self.TipZaposlenika" Multiplicity="1" />
+          <End Role="Zaposlenik" Type="Self.Zaposlenik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipZaposlenika">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Zaposlenik">
+              <PropertyRef Name="IDtipa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ObavijestiRazred">
+          <End Role="Obavijesti" Type="Self.Obavijesti" Multiplicity="*" />
+          <End Role="Razred" Type="Self.Razred" Multiplicity="*" />
+        </Association>
+        <Association Name="Razrednik">
+          <End Role="Razred" Type="Self.Razred" Multiplicity="*" />
+          <End Role="Zaposlenik" Type="Self.Zaposlenik" Multiplicity="*" />
+        </Association>
+        <Association Name="RazredPredmet">
+          <End Role="Predmet" Type="Self.Predmet" Multiplicity="*" />
+          <End Role="Razred" Type="Self.Razred" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="risEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Obavijesti" EntityType="Self.Obavijesti" />
+          <EntitySet Name="Ocjena" EntityType="Self.Ocjena" />
+          <EntitySet Name="Predmet" EntityType="Self.Predmet" />
+          <EntitySet Name="Razred" EntityType="Self.Razred" />
+          <EntitySet Name="Rubrika" EntityType="Self.Rubrika" />
+          <EntitySet Name="Skola" EntityType="Self.Skola" />
+          <EntitySet Name="Smjer" EntityType="Self.Smjer" />
+          <EntitySet Name="TipZaposlenika" EntityType="Self.TipZaposlenika" />
+          <EntitySet Name="Ucenik" EntityType="Self.Ucenik" />
+          <EntitySet Name="Zaposlenik" EntityType="Self.Zaposlenik" />
+          <AssociationSet Name="FK_Obavijesti_Zaposlenik" Association="Self.FK_Obavijesti_Zaposlenik">
+            <End Role="Zaposlenik" EntitySet="Zaposlenik" />
+            <End Role="Obavijesti" EntitySet="Obavijesti" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ocjena_Rubrika" Association="Self.FK_Ocjena_Rubrika">
+            <End Role="Rubrika" EntitySet="Rubrika" />
+            <End Role="Ocjena" EntitySet="Ocjena" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ocjena_Ucenik" Association="Self.FK_Ocjena_Ucenik">
+            <End Role="Ucenik" EntitySet="Ucenik" />
+            <End Role="Ocjena" EntitySet="Ocjena" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rubrika_Predmet" Association="Self.FK_Rubrika_Predmet">
+            <End Role="Predmet" EntitySet="Predmet" />
+            <End Role="Rubrika" EntitySet="Rubrika" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Razred_Skola" Association="Self.FK_Razred_Skola">
+            <End Role="Skola" EntitySet="Skola" />
+            <End Role="Razred" EntitySet="Razred" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Razred_Smjer" Association="Self.FK_Razred_Smjer">
+            <End Role="Smjer" EntitySet="Smjer" />
+            <End Role="Razred" EntitySet="Razred" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ucenik_Razred" Association="Self.FK_Ucenik_Razred">
+            <End Role="Razred" EntitySet="Razred" />
+            <End Role="Ucenik" EntitySet="Ucenik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zaposlenik_Skola" Association="Self.FK_Zaposlenik_Skola">
+            <End Role="Skola" EntitySet="Skola" />
+            <End Role="Zaposlenik" EntitySet="Zaposlenik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zaposlenik_TipZaposlenika" Association="Self.FK_Zaposlenik_TipZaposlenika">
+            <End Role="TipZaposlenika" EntitySet="TipZaposlenika" />
+            <End Role="Zaposlenik" EntitySet="Zaposlenik" />
+          </AssociationSet>
+          <AssociationSet Name="ObavijestiRazred" Association="Self.ObavijestiRazred">
+            <End Role="Obavijesti" EntitySet="Obavijesti" />
+            <End Role="Razred" EntitySet="Razred" />
+          </AssociationSet>
+          <AssociationSet Name="Razrednik" Association="Self.Razrednik">
+            <End Role="Razred" EntitySet="Razred" />
+            <End Role="Zaposlenik" EntitySet="Zaposlenik" />
+          </AssociationSet>
+          <AssociationSet Name="RazredPredmet" Association="Self.RazredPredmet">
+            <End Role="Predmet" EntitySet="Predmet" />
+            <End Role="Razred" EntitySet="Razred" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="risModelStoreContainer" CdmEntityContainer="risEntities">
+          <EntitySetMapping Name="Obavijesti">
+            <EntityTypeMapping TypeName="risModel.Obavijesti">
+              <MappingFragment StoreEntitySet="Obavijesti">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="tekst" ColumnName="tekst" />
+                <ScalarProperty Name="vrijemeObjavljivanja" ColumnName="vrijemeObjavljivanja" />
+                <ScalarProperty Name="IDobjavljivaca" ColumnName="IDobjavljivaca" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ocjena">
+            <EntityTypeMapping TypeName="risModel.Ocjena">
+              <MappingFragment StoreEntitySet="Ocjena">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDucenika" ColumnName="IDucenika" />
+                <ScalarProperty Name="IDrubrike" ColumnName="IDrubrike" />
+                <ScalarProperty Name="ocjena1" ColumnName="ocjena" />
+                <ScalarProperty Name="biljeska" ColumnName="biljeska" />
+                <ScalarProperty Name="vrijemeUnosa" ColumnName="vrijemeUnosa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Predmet">
+            <EntityTypeMapping TypeName="risModel.Predmet">
+              <MappingFragment StoreEntitySet="Predmet">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="imePredmeta" ColumnName="imePredmeta" />
+                <ScalarProperty Name="razinaRazreda" ColumnName="razinaRazreda" />
+                <ScalarProperty Name="satiTjedno" ColumnName="satiTjedno" />
+                <ScalarProperty Name="jeObavezan" ColumnName="jeObavezan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Razred">
+            <EntityTypeMapping TypeName="risModel.Razred">
+              <MappingFragment StoreEntitySet="Razred">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="imeRazreda" ColumnName="imeRazreda" />
+                <ScalarProperty Name="razina" ColumnName="razina" />
+                <ScalarProperty Name="brojUcenika" ColumnName="brojUcenika" />
+                <ScalarProperty Name="IDsmjer" ColumnName="IDsmjer" />
+                <ScalarProperty Name="IDskole" ColumnName="IDskole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rubrika">
+            <EntityTypeMapping TypeName="risModel.Rubrika">
+              <MappingFragment StoreEntitySet="Rubrika">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDpredmeta" ColumnName="IDpredmeta" />
+                <ScalarProperty Name="tekstRubrike" ColumnName="tekstRubrike" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Skola">
+            <EntityTypeMapping TypeName="risModel.Skola">
+              <MappingFragment StoreEntitySet="Skola">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="nazivSkole" ColumnName="nazivSkole" />
+                <ScalarProperty Name="adresa" ColumnName="adresa" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="mBrSkole" ColumnName="mBrSkole" />
+                <ScalarProperty Name="oibSkole" ColumnName="oibSkole" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Smjer">
+            <EntityTypeMapping TypeName="risModel.Smjer">
+              <MappingFragment StoreEntitySet="Smjer">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="imeSmjera" ColumnName="imeSmjera" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipZaposlenika">
+            <EntityTypeMapping TypeName="risModel.TipZaposlenika">
+              <MappingFragment StoreEntitySet="TipZaposlenika">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="nazivTipa" ColumnName="nazivTipa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ucenik">
+            <EntityTypeMapping TypeName="risModel.Ucenik">
+              <MappingFragment StoreEntitySet="Ucenik">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ime" ColumnName="ime" />
+                <ScalarProperty Name="prezime" ColumnName="prezime" />
+                <ScalarProperty Name="datumRodjenja" ColumnName="datumRodjenja" />
+                <ScalarProperty Name="oib" ColumnName="oib" />
+                <ScalarProperty Name="brojTelefona" ColumnName="brojTelefona" />
+                <ScalarProperty Name="brojMobitela" ColumnName="brojMobitela" />
+                <ScalarProperty Name="razred" ColumnName="razred" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zaposlenik">
+            <EntityTypeMapping TypeName="risModel.Zaposlenik">
+              <MappingFragment StoreEntitySet="Zaposlenik">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ime" ColumnName="ime" />
+                <ScalarProperty Name="prezime" ColumnName="prezime" />
+                <ScalarProperty Name="oib" ColumnName="oib" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="datumPocetkaRada" ColumnName="datumPocetkaRada" />
+                <ScalarProperty Name="IDtipa" ColumnName="IDtipa" />
+                <ScalarProperty Name="IDskole" ColumnName="IDskole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ObavijestiRazred" TypeName="risModel.ObavijestiRazred" StoreEntitySet="ObavijestiRazred">
+            <EndProperty Name="Obavijesti">
+              <ScalarProperty Name="ID" ColumnName="IDobavijesti" />
+            </EndProperty>
+            <EndProperty Name="Razred">
+              <ScalarProperty Name="ID" ColumnName="IDrazreda" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Razrednik" TypeName="risModel.Razrednik" StoreEntitySet="Razrednik">
+            <EndProperty Name="Razred">
+              <ScalarProperty Name="ID" ColumnName="IDrazred" />
+            </EndProperty>
+            <EndProperty Name="Zaposlenik">
+              <ScalarProperty Name="ID" ColumnName="IDnastavnik" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="RazredPredmet" TypeName="risModel.RazredPredmet" StoreEntitySet="RazredPredmet">
+            <EndProperty Name="Predmet">
+              <ScalarProperty Name="ID" ColumnName="IDpredmet" />
+            </EndProperty>
+            <EndProperty Name="Razred">
+              <ScalarProperty Name="ID" ColumnName="IDrazred" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

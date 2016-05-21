@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GradeBook.DAL", "GradeBook.DAL\GradeBook.DAL.csproj", "{832DA266-5B67-4EDC-8D32-539D7F46CD1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GradeBook.BLL", "GradeBook.BLL\GradeBook.BLL.csproj", "{2866B5B9-8750-4691-B37F-5FEBF6012891}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", "{0EA90864-4877-4821-85B2-6C34AE58F013}"
+	ProjectSection(SolutionItems) = preProject
+		References\Csla.dll = References\Csla.dll
+		References\Csla.dll.VisualState.xml = References\Csla.dll.VisualState.xml
+		References\Csla.pdb = References\Csla.pdb
+		References\Csla.xml = References\Csla.xml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{832DA266-5B67-4EDC-8D32-539D7F46CD1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{832DA266-5B67-4EDC-8D32-539D7F46CD1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{832DA266-5B67-4EDC-8D32-539D7F46CD1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{832DA266-5B67-4EDC-8D32-539D7F46CD1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2866B5B9-8750-4691-B37F-5FEBF6012891}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2866B5B9-8750-4691-B37F-5FEBF6012891}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2866B5B9-8750-4691-B37F-5FEBF6012891}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2866B5B9-8750-4691-B37F-5FEBF6012891}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
