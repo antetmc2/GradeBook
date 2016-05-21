@@ -126,7 +126,13 @@
   <data name="InvalidPhone" xml:space="preserve">
     <value>Broj telefona nije ispravno unesen.</value>
   </data>
+  <data name="MethodCallExpected" xml:space="preserve">
+    <value>Expected method call.</value>
+  </data>
   <data name="NoDataFound" xml:space="preserve">
     <value>Nema nijednog podatka.</value>
+  </data>
+  <data name="PropertyExpected" xml:space="preserve">
+    <value>Expected property expression.</value>
   </data>
 </root>

@@ -18,6 +18,7 @@ namespace GradeBook.BLL
 
         }
         #endregion
+
         #region Properties
         private static PropertyInfo<int> IdSkoleProperty = RegisterProperty(new PropertyInfo<int>(Reflector.GetPropertyName<Skola>(x => x.IdSkole)));
 
@@ -74,8 +75,10 @@ namespace GradeBook.BLL
             set { SetProperty(TelefonProperty, value); }
         }
         #endregion
+
         #region Calculated Properties
         #endregion
+
         #region Validation Rules
         protected override void AddBusinessRules()
         {
@@ -142,6 +145,171 @@ namespace GradeBook.BLL
                 return false;
             }
             return true;
+        }
+        #endregion
+
+        #region Factory Methods
+        public static Skola New()
+        {
+            return DataPortal.Create<Skola>();
+        }
+
+        public static void Delete(int id)
+        {
+            DataPortal.Delete<Skola>(new SingleCriteria<Skola, int>(id));
+        }
+
+        public static Skola Get(int id)
+        {
+            return DataPortal.Fetch<Skola>(new SingleCriteria<Skola, int>(id));
+        }
+        #endregion
+
+        #region Data Access
+        #region DataPortal Methods
+        private void DataPortal_Fetch(SingleCriteria<Skola, int> criteria)
+        {
+            using(var db = DAL.ContextManager<DAL.risEntities>.GetManager(DAL.Database.ProjektConnectionString))
+            {
+                var data = db.DataContext.Skola.Find(criteria.Value);
+
+                LoadProperty(IdSkoleProperty, data.ID);
+                LoadProperty(NazivSkoleProperty, data.nazivSkole);
+                LoadProperty(AdresaProperty, data.adresa);
+                LoadProperty(EmailProperty, data.email);
+                LoadProperty(MbrSkoleProperty, data.mBrSkole);
+                LoadProperty(OibSkoleProperty, data.oibSkole);
+                LoadProperty(TelefonProperty, data.telefon);
+            }
+        }
+
+        [Transactional(TransactionalTypes.TransactionScope)]
+        protected override void DataPortal_Insert()
+        {
+            using (var db = DAL.ContextManager<DAL.risEntities>.GetManager(DAL.Database.ProjektConnectionString))
+            {
+                DAL.Skola s = new DAL.Skola
+                {
+                    nazivSkole = NazivSkole,
+                    adresa = Adresa,
+                    email = Email,
+                    mBrSkole = MbrSkole,
+                    oibSkole = OibSkole,
+                    telefon = Telefon
+                };
+
+                db.DataContext.Skola.Add(s);
+                db.DataContext.SaveChanges();
+
+                LoadProperty(IdSkoleProperty, s.ID);
+
+                FieldManager.UpdateChildren(this);
+            }
+        }
+
+        [Transactional(TransactionalTypes.TransactionScope)]
+        protected override void DataPortal_Update()
+        {
+            using (var db = DAL.ContextManager<DAL.risEntities>.GetManager(DAL.Database.ProjektConnectionString))
+            {
+                DAL.Skola s = db.DataContext.Skola.Find(IdSkole);
+                s.nazivSkole = NazivSkole;
+                s.adresa = Adresa;
+                s.email = Email;
+                s.mBrSkole = MbrSkole;
+                s.oibSkole = OibSkole;
+                s.telefon = Telefon;
+
+                FieldManager.UpdateChildren(this);
+
+                db.DataContext.SaveChanges();
+            }
+        }
+
+        [Transactional(TransactionalTypes.TransactionScope)]
+        protected override void DataPortal_DeleteSelf()
+        {
+            DataPortal_Delete(new SingleCriteria<Skola, int>(IdSkole));
+        }
+
+        [Transactional(TransactionalTypes.TransactionScope)]
+        private void DataPortal_Delete(SingleCriteria<Skola, int> criteria)
+        {
+            using (var db = DAL.ContextManager<DAL.risEntities>.GetManager(DAL.Database.ProjektConnectionString))
+            {
+                var s = db.DataContext.Skola.Find(criteria.Value);
+                if(s != null)
+                {
+                    db.DataContext.Skola.Remove(s);
+                    db.DataContext.SaveChanges();
+                }
+            }
+        }
+        #endregion
+        #endregion
+
+        #region Exists
+
+        #region ExistsCommand
+        [Serializable()]
+        private class ExistsCommand : CommandBase
+        {
+            #region Execute
+            public static bool Exists(int id)
+            {
+                return DataPortal.Execute<ExistsCommand>(new ExistsCommand(id)).SkolaExists;
+            }
+
+            public static bool Exists(string oib)
+            {
+                return DataPortal.Execute<ExistsCommand>(new ExistsCommand(oib)).SkolaExists;
+            }
+            #endregion
+
+            #region Constructors
+            private ExistsCommand(int IdSkole)
+            {
+                this.IdSkole = IdSkole;
+            }
+
+            private ExistsCommand(string OibSkole)
+            {
+                this.OibSkole = OibSkole;
+            }
+
+            //private ExistsCommand(string MbrSkole)
+            //{
+            //    this.MbrSkole = MbrSkole;
+            //}
+            //ne radi?????
+            #endregion
+
+            #region Properties
+            public int IdSkole { get; private set; }
+            public string OibSkole { get; private set; }
+            //public string MbrSkole { get; private set; }
+            public bool SkolaExists { get; private set; }
+            #endregion
+            #region Data Access
+            #region DataPortal Methods
+            protected override void DataPortal_Execute()
+            {
+                using (var db = DAL.ContextManager<DAL.risEntities>.GetManager(DAL.Database.ProjektConnectionString))
+                {
+                    SkolaExists = db.DataContext.Skola.Where(x => x.ID == IdSkole).Count() > 0;
+                }
+            }
+            #endregion
+            #endregion
+
+        }
+        #endregion
+        #endregion
+
+        #region Overrides
+        public override string ToString()
+        {
+            return GetProperty(IdSkoleProperty).ToString();
         }
         #endregion
     }

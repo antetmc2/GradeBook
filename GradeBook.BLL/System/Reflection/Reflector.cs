@@ -14,7 +14,7 @@ namespace System.Reflection
       var methodCall = expression.Body as MethodCallExpression;
       if (methodCall == null)
       {
-        throw new ArgumentException(UpravljanjeProjektima.Properties.Resources.MethodCallExpected);
+        throw new ArgumentException(GradeBook.BLL.Properties.Resources.MethodCallExpected);
       }
       return methodCall.Method;
     }
@@ -24,7 +24,7 @@ namespace System.Reflection
       var methodCall = expression.Body as MethodCallExpression;
       if (methodCall == null)
       {
-        throw new ArgumentException(UpravljanjeProjektima.Properties.Resources.MethodCallExpected);
+        throw new ArgumentException(GradeBook.BLL.Properties.Resources.MethodCallExpected);
       }
       return methodCall.Method;
     }
@@ -45,7 +45,7 @@ namespace System.Reflection
 
       if (memberExpression == null || !(memberExpression.Member is PropertyInfo))
       {
-        throw new ArgumentException(UpravljanjeProjektima.Properties.Resources.PropertyExpected);
+        throw new ArgumentException(GradeBook.BLL.Properties.Resources.PropertyExpected);
       }
       return (PropertyInfo)memberExpression.Member;
     }

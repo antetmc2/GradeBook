@@ -88,11 +88,29 @@ namespace GradeBook.BLL.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expected method call..
+        /// </summary>
+        internal static string MethodCallExpected {
+            get {
+                return ResourceManager.GetString("MethodCallExpected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nema nijednog podatka..
         /// </summary>
         internal static string NoDataFound {
             get {
                 return ResourceManager.GetString("NoDataFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expected property expression..
+        /// </summary>
+        internal static string PropertyExpected {
+            get {
+                return ResourceManager.GetString("PropertyExpected", resourceCulture);
             }
         }
     }
