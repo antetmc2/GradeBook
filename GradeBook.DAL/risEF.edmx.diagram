@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="22e41a2aa219492cba4f70fe61a3134f" Name="Diagram1" ZoomLevel="73">
+      <Diagram DiagramId="22e41a2aa219492cba4f70fe61a3134f" Name="Diagram1" ZoomLevel="50">
         <EntityTypeShape EntityType="risModel.Obavijesti" Width="1.5" PointX="10.5" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="risModel.Ocjena" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
         <EntityTypeShape EntityType="risModel.Predmet" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
