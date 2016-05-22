@@ -61,6 +61,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Razred.cs" />
+    <Compile Include="Ucenik.cs" />
     <Compile Include="Skola.cs" />
     <Compile Include="Smjer.cs" />
     <Compile Include="System\Reflection\Reflector.cs" />

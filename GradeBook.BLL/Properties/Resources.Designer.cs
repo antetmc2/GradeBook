@@ -70,6 +70,15 @@ namespace GradeBook.BLL.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Broj mobitela nije ispravno unesen..
+        /// </summary>
+        internal static string InvalidMobitel {
+            get {
+                return ResourceManager.GetString("InvalidMobitel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OIB nije ispravno unesen..
         /// </summary>
         internal static string InvalidOIB {

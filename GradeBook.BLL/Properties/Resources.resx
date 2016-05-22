@@ -120,6 +120,9 @@
   <data name="InvalidMbr" xml:space="preserve">
     <value>Matični broj škole nije ispravno unesen.</value>
   </data>
+  <data name="InvalidMobitel" xml:space="preserve">
+    <value>Broj mobitela nije ispravno unesen.</value>
+  </data>
   <data name="InvalidOIB" xml:space="preserve">
     <value>OIB nije ispravno unesen.</value>
   </data>

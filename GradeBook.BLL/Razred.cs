@@ -114,14 +114,14 @@ namespace GradeBook.BLL
         {
             using(var db = DAL.ContextManager<DAL.risEntities>.GetManager(DAL.Database.ProjektConnectionString))
             {
-                var data = db.DataContext.Skola.Find(criteria.Value);
+                var data = db.DataContext.Razred.Find(criteria.Value);
 
                 LoadProperty(IdRazredaProperty, data.ID);
-                LoadProperty(ImeRazredaProperty, data.nazivSkole);
-                LoadProperty(RazinaProperty, data.adresa);
-                LoadProperty(BrojUcenikaProperty, data.email);
-                LoadProperty(IDSmjerProperty, data.mBrSkole);
-                LoadProperty(IDSkoleProperty, data.oibSkole);
+                LoadProperty(ImeRazredaProperty, data.imeRazreda);
+                LoadProperty(RazinaProperty, data.razina);
+                LoadProperty(BrojUcenikaProperty, data.brojUcenika);
+                LoadProperty(IDSmjerProperty, data.IDsmjer);
+                LoadProperty(IDSkoleProperty, data.IDskole);
             }
         }
 
