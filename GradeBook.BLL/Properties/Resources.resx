@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>E-mail adresa nije ispravno unesena.</value>
+  </data>
   <data name="InvalidMbr" xml:space="preserve">
     <value>Matični broj škole nije ispravno unesen.</value>
   </data>

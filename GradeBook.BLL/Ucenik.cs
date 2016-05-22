@@ -113,7 +113,7 @@ namespace GradeBook.BLL
             ValidationRules.AddRule(CommonRules.StringMaxLength, new CommonRules.MaxLengthRuleArgs(BrojMobitelaProperty, 18));
         }
 
-        private static bool IsMbrValid<T>(T target, RuleArgs e) where T : Ucenik
+        private static bool IsOibValid<T>(T target, RuleArgs e) where T : Ucenik
         {
             if (string.IsNullOrEmpty(target.Oib)) return true;
             try

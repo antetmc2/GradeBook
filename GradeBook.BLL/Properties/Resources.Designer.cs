@@ -61,6 +61,15 @@ namespace GradeBook.BLL.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E-mail adresa nije ispravno unesena..
+        /// </summary>
+        internal static string InvalidEmail {
+            get {
+                return ResourceManager.GetString("InvalidEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Matični broj škole nije ispravno unesen..
         /// </summary>
         internal static string InvalidMbr {
