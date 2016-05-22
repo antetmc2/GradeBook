@@ -25,7 +25,26 @@ namespace GradeBook.BLL
             else throw new NullReferenceException(Resources.NoDataFound);
         }
         #endregion
+        #region Data Access
+        #region DataPortal Methods
+        private void DataPortal_Fetch()
+        {
+            this.RaiseListChangedEvents = false;
+            using (var db = DAL.ContextManager<DAL.risEntities>.GetManager(DAL.Database.ProjektConnectionString))
+            {
+                List<NameValuePair> data = new List<NameValuePair>();
 
+                foreach (var s in db.DataContext.Smjer.AsNoTracking().ToList())
+                    data.Add(new NameValuePair(s.ID, s.imeSmjera));
+
+                IsReadOnly = false;
+                this.AddRange(data);
+                IsReadOnly = true;
+            }
+            this.RaiseListChangedEvents = true;
+        }
+        #endregion
+        #endregion
         #region Factory Methods
         private static Smjer smjer;
 
