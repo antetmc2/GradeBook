@@ -60,6 +60,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Razred.cs" />
     <Compile Include="Skola.cs" />
     <Compile Include="Smjer.cs" />
     <Compile Include="System\Reflection\Reflector.cs" />
