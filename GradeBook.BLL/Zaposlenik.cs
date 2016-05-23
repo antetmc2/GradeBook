@@ -101,17 +101,12 @@ namespace GradeBook.BLL
             ValidationRules.AddRule(CommonRules.StringRequired, PrezimeZaposlenikaProperty);
             ValidationRules.AddRule(CommonRules.StringMaxLength, new CommonRules.MaxLengthRuleArgs(PrezimeZaposlenikaProperty, 50));
 
-            ValidationRules.AddRule(CommonRules.StringRequired, DatumPocetkaRadaProperty);
-
             ValidationRules.AddRule(CommonRules.StringRequired, OibProperty);
             ValidationRules.AddRule(CommonRules.StringMinLength, new CommonRules.MinLengthRuleArgs(OibProperty, 11));
             ValidationRules.AddRule(CommonRules.StringMaxLength, new CommonRules.MaxLengthRuleArgs(OibProperty, 11));
 
             ValidationRules.AddRule(CommonRules.StringRequired, EmailProperty);
             ValidationRules.AddRule(CommonRules.StringMaxLength, new CommonRules.MaxLengthRuleArgs(EmailProperty, 15));
-
-            ValidationRules.AddRule(CommonRules.StringRequired, IdTipaProperty);
-            ValidationRules.AddRule(CommonRules.StringRequired, IdSkoleProperty);
         }
 
         private static bool IsOibValid<T>(T target, RuleArgs e) where T : Zaposlenik

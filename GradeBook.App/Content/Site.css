@@ -26,3 +26,12 @@ textarea {
 .table thead tr th {
     text-align: center;
 }
+
+.caret {
+    border-top-color: whitesmoke !important; 
+    border-bottom-color: whitesmoke !important;
+}
+
+#master {
+    color: #C6C6C6 !important;
+}

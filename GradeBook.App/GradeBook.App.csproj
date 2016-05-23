@@ -203,6 +203,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SkolaController.cs" />
     <Compile Include="Controllers\TipZaposlenikaController.cs" />
+    <Compile Include="Controllers\ZaposlenikController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -276,6 +277,9 @@
     <Content Include="Views\TipZaposlenika\Create.cshtml" />
     <Content Include="Views\TipZaposlenika\Edit.cshtml" />
     <Content Include="Views\Shared\ValidationError.cshtml" />
+    <Content Include="Views\Zaposlenik\Index.cshtml" />
+    <Content Include="Views\Zaposlenik\Details.cshtml" />
+    <Content Include="Views\Zaposlenik\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

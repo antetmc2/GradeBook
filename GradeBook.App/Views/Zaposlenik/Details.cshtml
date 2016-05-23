@@ -1,0 +1,50 @@
+﻿@model GradeBook.BLL.Zaposlenik
+
+@{
+    ViewBag.Title = Model.PunoImeZaposlenika;
+    GradeBook.BLL.TipZaposlenikaList listaTipova = GradeBook.BLL.TipZaposlenikaList.Get();
+}
+
+<h2>@Model.PunoImeZaposlenika</h2>
+
+<table class="table" style="text-align: center;">
+    <tr>
+        <td>Ime:</td>
+        <td>@Model.ImeZaposlenika</td>
+    </tr>
+    <tr>
+        <td>Prezime:</td>
+        <td>@Model.PrezimeZaposlenika</td>
+    </tr>
+    <tr>
+        <td>Tip zaposlenika:</td>
+        <td>@*@Html.DropDownList("tip", new SelectList(listaTipova, "Key", "Value", Model.IdTipa))*@
+        @listaTipova.GetItemByKey(Model.IdTipa)</td>
+    </tr>
+    <tr>
+        <td>OIB:</td>
+        <td>@Model.Oib</td>
+    </tr>
+    <tr>
+        <td>E-Mail:</td>
+        <td>@Model.Email</td>
+    </tr>
+    <tr>
+        <td>Datum početka rada:</td>
+        <td>@Model.DatumPocetkaRada.ToString("dd.MM.yyyy.")</td>
+    </tr>
+    <tr>
+        <td>@Html.ActionLink("Ažuriraj", "Edit", "Zaposlenik", new { id = Model.IdZaposlenika }, new { @class = "btn btn-primary" })</td>
+        <td>
+            @using (Html.BeginForm("Delete", "Zaposlenik", new { id = Model.IdZaposlenika }))
+            {
+                <button type="submit" class="btn btn-danger">Izbriši</button>
+            }
+        </td>
+
+    </tr>
+    <tr>
+        <td colspan="2">@Html.ActionLink("Povratak", "Index", "Zaposlenik", new { }, new { @class = "btn btn-danger" })</td>
+    </tr>
+</table>
+

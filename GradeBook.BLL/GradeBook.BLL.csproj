@@ -66,6 +66,8 @@
     <Compile Include="Predmet.cs" />
     <Compile Include="Obavijesti.cs" />
     <Compile Include="Ocjena.cs" />
+    <Compile Include="SkolaInfo.cs" />
+    <Compile Include="SkolaInfoList.cs" />
     <Compile Include="Zaposlenik.cs" />
     <Compile Include="Ucenik.cs" />
     <Compile Include="Skola.cs" />
@@ -73,6 +75,8 @@
     <Compile Include="System\Reflection\Reflector.cs" />
     <Compile Include="TipZaposlenikaList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ZaposlenikInfo.cs" />
+    <Compile Include="ZaposlenikInfoList.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GradeBook.DAL\GradeBook.DAL.csproj">

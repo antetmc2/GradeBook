@@ -1,0 +1,31 @@
+﻿@model GradeBook.BLL.ZaposlenikInfoList
+@{
+    ViewBag.Title = "Popis zaposlenika";
+}
+
+<h2>Popis svih zaposlenika</h2>
+
+<table class="table table-hover" style="text-align: center;">
+    <thead><tr>
+    <th colspan="3">
+        @Html.ActionLink("Dodaj novog zaposlenika", "Create", "TipZaposlenika", new { }, new { @class = "btn btn-primary" })
+    </th>
+    </tr>
+    <tr><th>Osoba</th>
+        <th colspan="2">Dodatne radnje nad podatcima:</th>
+        </tr></thead>
+    @foreach(var item in Model)
+    {
+        <tr><td>@item.NazivOsobe</td>
+            <td>
+                @Html.ActionLink("Detalji", "Details", "Zaposlenik", new { id = item.IdZaposlenika }, new { @class = "btn btn-primary" })
+            </td>
+            <td>
+                @using (Html.BeginForm("Delete", "Zaposlenik", new { id = item.IdZaposlenika }))
+                {
+                    @*@Html.ActionLink("Izbriši", "Delete", "TipZaposlenika", new { id = item.IdTipa }, new { @class = "btn btn-danger" })*@
+                    <button type="submit" class="btn btn-danger">Izbriši</button>
+                }
+            </td></tr>
+    }
+</table>

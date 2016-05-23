@@ -25,20 +25,27 @@
                 <ul class="nav navbar-nav">
                     @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tip zaposlenika <b class="caret" style="border-top-color: black !important; border-bottom-color: black !important;"></b></a>
+                        <a href="#" id="master" class="dropdown-toggle" data-toggle="dropdown">Škole <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Pregled škola", "Index", "Skola")</li>
+                            <li>@Html.ActionLink("Dodaj novu školu", "Create", "Skola")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" id="master" class="dropdown-toggle" data-toggle="dropdown">Zaposlenici <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Pregled zaposlenika", "Index", "Zaposlenik")</li>
+                            <li>@Html.ActionLink("Dodaj novog zaposlenika", "Create", "Zaposlenik")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tip zaposlenika <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             @*<li><a href="@Url.Action("ViewContent", "Content", new {Username = @User.Identity.GetUserName()})">View your contents</a></li>*@
                             <li>@Html.ActionLink("Pregled tipova", "Index", "TipZaposlenika")</li>
                             <li>@Html.ActionLink("Dodaj novi tip", "Create", "TipZaposlenika")</li>
                         </ul>
                     </li>
-                    @*<li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Smjer <b class="caret" style="border-top-color: black !important; border-bottom-color: black !important;"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Pregled smjerova", "Index", "TipZaposlenika")</li>
-                            <li>@Html.ActionLink("Dodaj novi smjer", "Create", "TipZaposlenika")</li>
-                        </ul>
-                    </li>*@
                     @*<li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                 </ul>
