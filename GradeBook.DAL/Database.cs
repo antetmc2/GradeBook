@@ -8,6 +8,6 @@ namespace GradeBook.DAL
 {
     public static class Database
     {
-        public static readonly string ProjektConnectionString = "risConnectionString";
+        public static readonly string ProjektConnectionString = "GradeBookConnectionString";
     }
 }

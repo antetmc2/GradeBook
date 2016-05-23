@@ -9,10 +9,11 @@ using GradeBook.BLL.Properties;
 namespace GradeBook.BLL
 {
     [Serializable()]
-    public class TipZaposlenika : NameValueListBase<int, string>
+    public class TipZaposlenikaList : NameValueListBase<int, string>
     {
+        //Read-Only lista za tipa zaposlenika
         #region Constructors
-        private TipZaposlenika()
+        private TipZaposlenikaList()
         {
 
         }
@@ -20,7 +21,7 @@ namespace GradeBook.BLL
         #region Business Methods
         public static int Default()
         {
-            TipZaposlenika tip = Get();
+            TipZaposlenikaList tip = Get();
             if (tip.Count > 0) return tip.Items[0].Key;
             else throw new NullReferenceException(Resources.NoDataFound);
         }
@@ -46,11 +47,11 @@ namespace GradeBook.BLL
         #endregion
         #endregion
         #region Factory Methods
-        private static TipZaposlenika tip;
+        private static TipZaposlenikaList tip;
 
-        public static TipZaposlenika Get()
+        public static TipZaposlenikaList Get()
         {
-            if (tip == null) tip = DataPortal.Fetch<TipZaposlenika>();
+            if (tip == null) tip = DataPortal.Fetch<TipZaposlenikaList>();
             return tip;
         }
 

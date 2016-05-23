@@ -1,0 +1,22 @@
+﻿@model GradeBook.BLL.Admin.TipZaposlenika
+
+@{
+    ViewBag.Title = "Napravi novi tip";
+}
+
+<h2>Napravi novi tip zaposlenika:</h2>
+
+@using(Html.BeginForm())
+{
+    <form>
+        <div class="form-group">
+            @Html.LabelFor(m => m.IdTipa)
+            @Html.TextBoxFor(m => m.IdTipa, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.NazivTipa)
+            @Html.TextBoxFor(m => m.NazivTipa, new { @class = "form-control" })
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+}
