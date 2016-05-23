@@ -62,6 +62,7 @@
     </Compile>
     <Compile Include="Razred.cs" />
     <Compile Include="Predmet.cs" />
+    <Compile Include="Obavijesti.cs" />
     <Compile Include="Zaposlenik.cs" />
     <Compile Include="Ucenik.cs" />
     <Compile Include="Skola.cs" />
