@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", 
 		References\Csla.xml = References\Csla.xml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GradeBook.App", "GradeBook.App\GradeBook.App.csproj", "{3687441E-CC46-4457-B829-03B7D2D589ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{2866B5B9-8750-4691-B37F-5FEBF6012891}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2866B5B9-8750-4691-B37F-5FEBF6012891}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2866B5B9-8750-4691-B37F-5FEBF6012891}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3687441E-CC46-4457-B829-03B7D2D589ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3687441E-CC46-4457-B829-03B7D2D589ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3687441E-CC46-4457-B829-03B7D2D589ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3687441E-CC46-4457-B829-03B7D2D589ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
