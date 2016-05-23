@@ -6,6 +6,8 @@
 
 <h2>Uredi postojeći tip zaposlenika:</h2>
 
+@{Html.RenderPartial("ValidationError");}
+
 @using(Html.BeginForm())
 {
     <form>
@@ -13,7 +15,7 @@
             @*@Html.LabelFor(m => m.IdTipa)*@
             <label for="IdTipa">ID tipa zaposlenika:</label>
             @Html.TextBoxFor(m => m.IdTipa, new { @class = "form-control", disabled = "disabled" })
-        </div>
+        </div>a
         <div class="form-group">
             @*@Html.LabelFor(m => m.NazivTipa)*@
             <label for="NazivTipa">Naziv tipa zaposlenika:</label>
@@ -23,3 +25,9 @@
         @Html.ActionLink("Odustani", "Index", "TipZaposlenika", new { }, new { @class = "btn btn-danger" })
     </form>
 }
+
+<script>
+    $(document).ready(function () {
+        if ($("#lista li").length === 0) $("#upozorenja").hide();
+    });
+</script>
