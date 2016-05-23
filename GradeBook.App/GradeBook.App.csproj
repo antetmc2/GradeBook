@@ -273,6 +273,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\TipZaposlenika\Index.cshtml" />
     <Content Include="Views\TipZaposlenika\Create.cshtml" />
+    <Content Include="Views\TipZaposlenika\Edit.cshtml" />
+    <Content Include="Views\Shared\ValidationError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

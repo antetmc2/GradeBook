@@ -63,6 +63,7 @@ namespace GradeBook.BLL.Admin
         protected override void AddBusinessRules()
         {
             ValidationRules.AddRule(CommonRules.StringRequired, NazivTipaProperty);
+            ValidationRules.AddRule(CommonRules.StringMaxLength, new CommonRules.MaxLengthRuleArgs(NazivTipaProperty, 50));
         }
         #endregion
 
@@ -106,6 +107,8 @@ namespace GradeBook.BLL.Admin
             using (var db = DAL.ContextManager<DAL.risEntities>.GetManager(DAL.Database.ProjektConnectionString))
             {
                 DAL.TipZaposlenika tz = db.DataContext.TipZaposlenika.Find(IdTipa);
+
+                tz.nazivTipa = NazivTipa;
 
                 db.DataContext.SaveChanges();
             }

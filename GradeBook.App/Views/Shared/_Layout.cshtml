@@ -6,7 +6,9 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -30,14 +32,13 @@
                             <li>@Html.ActionLink("Dodaj novi tip", "Create", "TipZaposlenika")</li>
                         </ul>
                     </li>
-                    <li class="dropdown">
+                    @*<li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Smjer <b class="caret" style="border-top-color: black !important; border-bottom-color: black !important;"></b></a>
                         <ul class="dropdown-menu">
-                            @*<li><a href="@Url.Action("ViewContent", "Content", new {Username = @User.Identity.GetUserName()})">View your contents</a></li>*@
                             <li>@Html.ActionLink("Pregled smjerova", "Index", "TipZaposlenika")</li>
                             <li>@Html.ActionLink("Dodaj novi smjer", "Create", "TipZaposlenika")</li>
                         </ul>
-                    </li>
+                    </li>*@
                     @*<li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                 </ul>
@@ -53,8 +54,6 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+
 </body>
 </html>

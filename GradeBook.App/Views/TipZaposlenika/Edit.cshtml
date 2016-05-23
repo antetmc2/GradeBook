@@ -1,31 +1,25 @@
 ﻿@model GradeBook.BLL.Admin.TipZaposlenika
 
 @{
-    ViewBag.Title = "Napravi novi tip";
+    ViewBag.Title = "Uredi postojeći tip";
 }
 
-<h2>Napravi novi tip zaposlenika:</h2>
-
-@{Html.RenderPartial("ValidationError");}
+<h2>Uredi postojeći tip zaposlenika:</h2>
 
 @using(Html.BeginForm())
 {
     <form>
-        @*<div class="form-group">
+        <div class="form-group">
+            @*@Html.LabelFor(m => m.IdTipa)*@
             <label for="IdTipa">ID tipa zaposlenika:</label>
             @Html.TextBoxFor(m => m.IdTipa, new { @class = "form-control", disabled = "disabled" })
-        </div>*@
+        </div>
         <div class="form-group">
+            @*@Html.LabelFor(m => m.NazivTipa)*@
             <label for="NazivTipa">Naziv tipa zaposlenika:</label>
             @Html.TextBoxFor(m => m.NazivTipa, new { @class = "form-control" })
         </div>
-        <button type="submit" class="btn btn-default">Dodaj</button>
+        <button type="submit" class="btn btn-default">Spremi</button>
         @Html.ActionLink("Odustani", "Index", "TipZaposlenika", new { }, new { @class = "btn btn-danger" })
     </form>
 }
-
-<script>
-    $(document).ready(function () {
-        if ($("#lista li").length === 0) $("#upozorenja").hide();
-    });
-</script>
