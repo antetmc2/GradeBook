@@ -211,7 +211,7 @@ namespace GradeBook.BLL
                     razred = Razred
                 };
 
-                db.DataContext.Ucenik .Add(u);
+                db.DataContext.Ucenik.Add(u);
                 db.DataContext.SaveChanges();
 
                 LoadProperty(IdUcenikaProperty, u.ID);
