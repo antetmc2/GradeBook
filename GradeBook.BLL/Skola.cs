@@ -10,6 +10,7 @@ using GradeBook.BLL.Properties;
 
 namespace GradeBook.BLL
 {
+    [Serializable()]
     public class Skola : BusinessBase<Skola>
     {
         #region Constructors

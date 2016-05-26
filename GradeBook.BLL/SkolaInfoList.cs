@@ -9,7 +9,8 @@ using GradeBook.BLL.Properties;
 namespace GradeBook.BLL
 {
     [Serializable()]
-    public class SkolaInfoList : NameValueListBase<int, string>
+    public class SkolaInfoList : ReadOnlyListBase<SkolaInfoList, SkolaInfo>
+    //dohvaća read-only listu škola (za odabir)
     {
         #region Constructors
         private SkolaInfoList()
@@ -18,12 +19,10 @@ namespace GradeBook.BLL
         }
         #endregion
 
-        #region Business Methods
-        public static int Default()
+        #region Factory Methods
+        public static SkolaInfoList Get()
         {
-            SkolaInfoList sk = Get();
-            if (sk.Count > 0) return sk.Items[0].Key;
-            else throw new NullReferenceException(Resources.NoDataFound);
+            return DataPortal.Fetch<SkolaInfoList>();
         }
         #endregion
 
@@ -34,10 +33,10 @@ namespace GradeBook.BLL
             this.RaiseListChangedEvents = false;
             using (var db = DAL.ContextManager<DAL.risEntities>.GetManager(DAL.Database.ProjektConnectionString))
             {
-                List<NameValuePair> data = new List<NameValuePair>();
+                List<SkolaInfo> data = new List<SkolaInfo>();
 
                 foreach (var tz in db.DataContext.Skola.AsNoTracking().ToList())
-                    data.Add(new NameValuePair(tz.ID, tz.nazivSkole));
+                    data.Add(new SkolaInfo(tz.ID, tz.nazivSkole));
 
                 IsReadOnly = false;
                 this.AddRange(data);
@@ -48,18 +47,6 @@ namespace GradeBook.BLL
         #endregion
         #endregion
 
-        #region Factory Methods
-        private static SkolaInfoList skole;
-        public static SkolaInfoList Get()
-        {
-            if (skole == null) return DataPortal.Fetch<SkolaInfoList>();
-            return skole;
-        }
-        public static void InvalidateCache()
-        {
-            skole = null;
-        }
-        #endregion
 
     }
 }
