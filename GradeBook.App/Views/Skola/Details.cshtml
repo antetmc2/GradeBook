@@ -1,0 +1,46 @@
+﻿@model GradeBook.BLL.Skola
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<table class="table" style="text-align: center;">
+    <tr>
+        <td>Naziv škole:</td>
+        <td>@Model.NazivSkole</td>
+    </tr>
+    <tr>
+        <td>Adresa:</td>
+        <td>@Model.Adresa</td>
+    </tr>
+    <tr>
+        <td>E-mail:</td>
+        <td>@Model.Email</td>
+</tr>
+<tr>
+    <td>Matični broj škole:</td>
+    <td>@Model.MbrSkole</td>
+</tr>
+<tr>
+    <td>OIB škole:</td>
+    <td>@Model.OibSkole</td>
+</tr>
+<tr>
+    <td>Telefon:</td>
+    <td>@Model.Telefon</td>
+</tr>
+<tr>
+    <td>@Html.ActionLink("Ažuriraj", "Edit", "Skola", new { id = Model.IdSkole }, new { @class = "btn btn-primary" })</td>
+    <td>
+        @using (Html.BeginForm("Delete", "Skola", new { id = Model.IdSkole }))
+            {
+            <button type="submit" class="btn btn-danger">Izbriši</button>
+        }
+    </td>
+
+</tr>
+<tr>
+    <td colspan="2">@Html.ActionLink("Povratak", "Index", "Skola", new { }, new { @class = "btn btn-danger" })</td>
+</tr>
+</table>

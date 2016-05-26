@@ -24,7 +24,7 @@
         </div>
         <div class="form-group">
             <label for="NazivTipa">Škola:</label>
-            @Html.DropDownList("IdSkole", new SelectList(listaSkola, "Key", "Value", Model.IdSkole), "Izaberi školu:", new { @class = "form-control" })
+            @Html.DropDownList("IdSkole", new SelectList(listaSkola, "IdSkole", "NazivSkole", Model.IdSkole), "Izaberi školu:", new { @class = "form-control" })
         </div>
         <div class="form-group">
             <label for="DatumPocetka">Datum početka rada:</label>

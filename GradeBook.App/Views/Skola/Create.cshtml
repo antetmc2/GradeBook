@@ -1,0 +1,38 @@
+﻿@model GradeBook.BLL.Skola
+@{
+    ViewBag.Title = "Nova škola";
+}
+
+<h2>Dodaj novu školu</h2>
+
+@using (Html.BeginForm())
+{
+    <form>
+        <div class="form-group">
+            <label for="Ime">Naziv škole:</label>
+            @Html.TextBoxFor(m => m.NazivSkole, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="Prezime">Adresa škole:</label>
+            @Html.TextBoxFor(m => m.Adresa, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="NazivTipa">E-mail adresa škole:</label>
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="NazivTipa">Matični broj škole:</label>
+            @Html.TextBoxFor(m => m.MbrSkole, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="DatumPocetka">OIB škole:</label>
+            @Html.TextBoxFor(m => m.OibSkole, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="Oib">Telefonski broj škole:</label>
+            @Html.TextBoxFor(m => m.Telefon, new { @class = "form-control" })
+        </div>
+        <button type="submit" class="btn btn-default">Dodaj</button>
+        @Html.ActionLink("Odustani", "Index", "Skola", new { }, new { @class = "btn btn-danger" })
+    </form>
+}

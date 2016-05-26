@@ -3,7 +3,8 @@
 @{
     ViewBag.Title = Model.PunoImeZaposlenika;
     GradeBook.BLL.TipZaposlenikaList listaTipova = GradeBook.BLL.TipZaposlenikaList.Get();
-    GradeBook.BLL.SkolaInfoList listaSkola = GradeBook.BLL.SkolaInfoList.Get();
+    //GradeBook.BLL.SkolaInfoList listaSkola = GradeBook.BLL.SkolaInfoList.Get();
+    GradeBook.BLL.Skola skola = GradeBook.BLL.Skola.Get(Model.IdSkole);
 }
 
 <h2>@Model.PunoImeZaposlenika</h2>
@@ -26,7 +27,7 @@
         <td>Škola:</td>
         <td>
             @*@Html.DropDownList("tip", new SelectList(listaTipova, "Key", "Value", Model.IdTipa))*@
-        @listaSkola.GetItemByKey(Model.IdSkole)
+        @skola.NazivSkole
     </td>
 </tr>
     <tr>
