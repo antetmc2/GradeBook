@@ -109,10 +109,12 @@ namespace GradeBook.BLL
 
             ValidationRules.AddRule(CommonRules.StringRequired, MbrSkoleProperty);
             ValidationRules.AddRule(CommonRules.StringMaxLength, new CommonRules.MaxLengthRuleArgs(MbrSkoleProperty, 10));
+            ValidationRules.AddRule<Skola>(IsMbrValid, MbrSkoleProperty);
 
             ValidationRules.AddRule(CommonRules.StringRequired, OibSkoleProperty);
             ValidationRules.AddRule(CommonRules.StringMinLength, new CommonRules.MinLengthRuleArgs(OibSkoleProperty, 11));
             ValidationRules.AddRule(CommonRules.StringMaxLength, new CommonRules.MaxLengthRuleArgs(OibSkoleProperty, 11));
+            ValidationRules.AddRule<Skola>(IsOIBValid, OibSkoleProperty);
 
             ValidationRules.AddRule(CommonRules.StringRequired, TelefonProperty);
             ValidationRules.AddRule(CommonRules.StringMaxLength, new CommonRules.MaxLengthRuleArgs(TelefonProperty, 15));

@@ -29,15 +29,43 @@ namespace GradeBook.App.Controllers
         public ActionResult Create(string ImeZaposlenika, string PrezimeZaposlenika, DateTime DatumPocetkaRada, string Oib, string Email, int IdSkole, int IdTipa)
         {
             Zaposlenik zaposlenik = Zaposlenik.New();
-            zaposlenik.ImeZaposlenika = ImeZaposlenika;
-            zaposlenik.PrezimeZaposlenika = PrezimeZaposlenika;
-            zaposlenik.DatumPocetkaRada = DatumPocetkaRada;
-            zaposlenik.Oib = Oib;
-            zaposlenik.Email = Email;
-            zaposlenik.IdSkole = IdSkole;
-            zaposlenik.IdTipa = IdTipa;
-            zaposlenik = zaposlenik.Save();
-            return RedirectToAction("Details", new { id = zaposlenik.IdZaposlenika });
+            try
+            {
+                zaposlenik.ImeZaposlenika = ImeZaposlenika;
+                zaposlenik.PrezimeZaposlenika = PrezimeZaposlenika;
+                zaposlenik.DatumPocetkaRada = DatumPocetkaRada;
+                zaposlenik.Oib = Oib;
+                zaposlenik.Email = Email;
+                zaposlenik.IdSkole = IdSkole;
+                zaposlenik.IdTipa = IdTipa;
+                zaposlenik = zaposlenik.Save();
+                return RedirectToAction("Details", new { id = zaposlenik.IdZaposlenika });
+            }
+            catch (Csla.Validation.ValidationException ex)
+            {
+                ViewBag.Pogreska = ex.Message;
+                if (zaposlenik.BrokenRulesCollection.Count > 0)
+                {
+                    List<string> errors = new List<string>();
+                    foreach (Csla.Validation.BrokenRule rule in zaposlenik.BrokenRulesCollection)
+                    {
+                        errors.Add(string.Format("{0}: {1}", rule.Property, rule.Description));
+                        ModelState.AddModelError(rule.Property, rule.Description);
+                    }
+                    ViewBag.ErrorsList = errors;
+                }
+                return View(zaposlenik);
+            }
+            catch (Csla.DataPortalException ex)
+            {
+                ViewBag.Pogreska = ex.BusinessException.Message;
+                return View(zaposlenik);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Pogreska = ex.Message;
+                return View(zaposlenik);
+            }
         }
 
         public ActionResult Edit(int id)
@@ -50,17 +78,44 @@ namespace GradeBook.App.Controllers
         public ActionResult Edit(int id, string ImeZaposlenika, string PrezimeZaposlenika, DateTime DatumPocetkaRada, string Oib, string Email, int IdSkole, int IdTipa)
         {
             Zaposlenik zaposlenik = null;
-
-            zaposlenik = Zaposlenik.Get(id);
-            zaposlenik.ImeZaposlenika = ImeZaposlenika;
-            zaposlenik.PrezimeZaposlenika = PrezimeZaposlenika;
-            zaposlenik.DatumPocetkaRada = DatumPocetkaRada;
-            zaposlenik.Oib = Oib;
-            zaposlenik.Email = Email;
-            zaposlenik.IdSkole = IdSkole;
-            zaposlenik.IdTipa = IdTipa;
-            zaposlenik = zaposlenik.Save();
-            return RedirectToAction("Details", new { id = zaposlenik.IdZaposlenika });
+            try
+            {
+                zaposlenik = Zaposlenik.Get(id);
+                zaposlenik.ImeZaposlenika = ImeZaposlenika;
+                zaposlenik.PrezimeZaposlenika = PrezimeZaposlenika;
+                zaposlenik.DatumPocetkaRada = DatumPocetkaRada;
+                zaposlenik.Oib = Oib;
+                zaposlenik.Email = Email;
+                zaposlenik.IdSkole = IdSkole;
+                zaposlenik.IdTipa = IdTipa;
+                zaposlenik = zaposlenik.Save();
+                return RedirectToAction("Details", new { id = zaposlenik.IdZaposlenika });
+            }
+            catch (Csla.Validation.ValidationException ex)
+            {
+                ViewBag.Pogreska = ex.Message;
+                if (zaposlenik.BrokenRulesCollection.Count > 0)
+                {
+                    List<string> errors = new List<string>();
+                    foreach (Csla.Validation.BrokenRule rule in zaposlenik.BrokenRulesCollection)
+                    {
+                        errors.Add(string.Format("{0}: {1}", rule.Property, rule.Description));
+                        ModelState.AddModelError(rule.Property, rule.Description);
+                    }
+                    ViewBag.ErrorsList = errors;
+                }
+                return View(zaposlenik);
+            }
+            catch (Csla.DataPortalException ex)
+            {
+                ViewBag.Pogreska = ex.BusinessException.Message;
+                return View(zaposlenik);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Pogreska = ex.Message;
+                return View(zaposlenik);
+            }
         }
 
         [HttpPost]

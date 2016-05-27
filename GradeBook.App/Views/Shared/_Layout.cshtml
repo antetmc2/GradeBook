@@ -55,6 +55,11 @@
     </div>
     <div class="container body-content">
         @RenderBody()
+        <script>
+    $(document).ready(function () {
+        if ($("#lista li").length === 0) $("#upozorenja").hide();
+    });
+        </script>
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>

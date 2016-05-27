@@ -105,9 +105,11 @@ namespace GradeBook.BLL
             ValidationRules.AddRule(CommonRules.StringRequired, OibProperty);
             ValidationRules.AddRule(CommonRules.StringMinLength, new CommonRules.MinLengthRuleArgs(OibProperty, 11));
             ValidationRules.AddRule(CommonRules.StringMaxLength, new CommonRules.MaxLengthRuleArgs(OibProperty, 11));
+            ValidationRules.AddRule<Zaposlenik>(IsOibValid, OibProperty);
 
             ValidationRules.AddRule(CommonRules.StringRequired, EmailProperty);
-            ValidationRules.AddRule(CommonRules.StringMaxLength, new CommonRules.MaxLengthRuleArgs(EmailProperty, 15));
+            ValidationRules.AddRule(CommonRules.StringMaxLength, new CommonRules.MaxLengthRuleArgs(EmailProperty, 35));
+            ValidationRules.AddRule<Zaposlenik>(IsEmailValid, EmailProperty);
         }
 
         private static bool IsOibValid<T>(T target, RuleArgs e) where T : Zaposlenik
@@ -115,7 +117,7 @@ namespace GradeBook.BLL
             if (string.IsNullOrEmpty(target.Oib)) return true;
             try
             {
-                Convert.ToInt32(target);
+                Convert.ToInt64(target.Oib);
             }
             catch
             {

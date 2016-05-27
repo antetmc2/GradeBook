@@ -31,16 +31,44 @@ namespace GradeBook.App.Controllers
         {
             Skola skola = null;
 
-            skola = Skola.Get(id);
-            skola.NazivSkole = NazivSkole;
-            skola.Adresa = Adresa;
-            skola.Email = Email;
-            skola.MbrSkole = MbrSkole;
-            skola.OibSkole = OibSkole;
-            skola.Telefon = Telefon;
-            skola = skola.Save();
+            try
+            {
+                skola = Skola.Get(id);
+                skola.NazivSkole = NazivSkole;
+                skola.Adresa = Adresa;
+                skola.Email = Email;
+                skola.MbrSkole = MbrSkole;
+                skola.OibSkole = OibSkole;
+                skola.Telefon = Telefon;
+                skola = skola.Save();
 
-            return RedirectToAction("Details", new { id = skola.IdSkole });
+                return RedirectToAction("Details", new { id = skola.IdSkole });
+            }
+            catch (Csla.Validation.ValidationException ex)
+            {
+                ViewBag.Pogreska = ex.Message;
+                if (skola.BrokenRulesCollection.Count > 0)
+                {
+                    List<string> errors = new List<string>();
+                    foreach (Csla.Validation.BrokenRule rule in skola.BrokenRulesCollection)
+                    {
+                        errors.Add(string.Format("{0}: {1}", rule.Property, rule.Description));
+                        ModelState.AddModelError(rule.Property, rule.Description);
+                    }
+                    ViewBag.ErrorsList = errors;
+                }
+                return View(skola);
+            }
+            catch (Csla.DataPortalException ex)
+            {
+                ViewBag.Pogreska = ex.BusinessException.Message;
+                return View(skola);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Pogreska = ex.Message;
+                return View(skola);
+            }
         }
 
         public ActionResult Create()
@@ -52,15 +80,44 @@ namespace GradeBook.App.Controllers
         public ActionResult Create(string NazivSkole, string Adresa, string Email, string MbrSkole, string OibSkole, string Telefon)
         {
             Skola skola = Skola.New();
-            skola.NazivSkole = NazivSkole;
-            skola.Adresa = Adresa;
-            skola.Email = Email;
-            skola.MbrSkole = MbrSkole;
-            skola.OibSkole = OibSkole;
-            skola.Telefon = Telefon;
-            skola = skola.Save();
 
-            return RedirectToAction("Details", new { id = skola.IdSkole });
+            try
+            {
+                skola.NazivSkole = NazivSkole;
+                skola.Adresa = Adresa;
+                skola.Email = Email;
+                skola.MbrSkole = MbrSkole;
+                skola.OibSkole = OibSkole;
+                skola.Telefon = Telefon;
+                skola = skola.Save();
+
+                return RedirectToAction("Details", new { id = skola.IdSkole });
+            }
+            catch (Csla.Validation.ValidationException ex)
+            {
+                ViewBag.Pogreska = ex.Message;
+                if (skola.BrokenRulesCollection.Count > 0)
+                {
+                    List<string> errors = new List<string>();
+                    foreach (Csla.Validation.BrokenRule rule in skola.BrokenRulesCollection)
+                    {
+                        errors.Add(string.Format("{0}: {1}", rule.Property, rule.Description));
+                        ModelState.AddModelError(rule.Property, rule.Description);
+                    }
+                    ViewBag.ErrorsList = errors;
+                }
+                return View(skola);
+            }
+            catch (Csla.DataPortalException ex)
+            {
+                ViewBag.Pogreska = ex.BusinessException.Message;
+                return View(skola);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Pogreska = ex.Message;
+                return View(skola);
+            }
         }
 
         [HttpPost]
