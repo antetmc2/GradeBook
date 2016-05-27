@@ -62,5 +62,21 @@ namespace GradeBook.App.Controllers
 
             return RedirectToAction("Details", new { id = skola.IdSkole });
         }
+
+        [HttpPost]
+        public string PromijeniTipZaposlenika(int IdZaposlenika, int IdTipa)
+        {
+            try
+            {
+                Zaposlenik zaposlenik = Zaposlenik.Get(IdZaposlenika);
+                zaposlenik.IdTipa = IdTipa;
+                zaposlenik.Save();
+                return "OK";
+            }
+            catch (Exception exc)
+            {
+                return exc.Message;
+            }
+        }
     }
 }

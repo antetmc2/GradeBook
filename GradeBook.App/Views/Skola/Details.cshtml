@@ -1,6 +1,7 @@
 ﻿@model GradeBook.BLL.Skola
 @{
     ViewBag.Title = "Detalji o školi";
+    GradeBook.BLL.TipZaposlenikaList listaTipova = GradeBook.BLL.TipZaposlenikaList.Get();
     var vrij = Model;
     int test = 5;
 }
@@ -47,6 +48,7 @@
 </tr>
 </table>
 
+<hr />
 <h2>Zaposlenici škole:</h2>
 
 <table class="table" style="text-align: center;">
@@ -55,6 +57,8 @@
             <th>ID</th>
             <th>Ime</th>
             <th>Prezime</th>
+            <th>Tip zaposlenika</th>
+            <th colspan="2">Dostupne radnje</th>
         </tr>
     </thead>
     @foreach(var a in Model.ZaposlenikSkole)
@@ -63,6 +67,46 @@
             <td>@a.IdZaposlenika</td>
             <td>@a.ImeZaposlenika</td>
             <td>@a.PrezimeZaposlenika</td>
+            <td>@Html.DropDownList("IdTipa", new SelectList(listaTipova.OrderBy(x => x.Value), "Key", "Value", a.IdTipa), "Izaberi tip zaposlenika:", new { @class = "tip form-control", data_idzaposlenika = a.IdZaposlenika })
+            
+            <span class="rezultat"></span></td>
+            <td>@Html.ActionLink("Detalji", "Details", "Zaposlenik", new { id = a.IdZaposlenika }, new { @class = "btn btn-primary" })</td>
+            @using (Html.BeginForm("DeleteZaposlenik", "Zaposlenik", new { id = Model.IdSkole }))
+            {
+                <td><button type="submit" class="btn btn-danger">Izbriši</button></td>
+            }
         </tr>
     }
 </table>
+
+<script>
+    $(function () {
+        $('.tip').each(function () {
+            $(this).change(function () {
+                var span = $(this).parent().find(".rezultat").first();
+                promijeniTip($(this).data('idzaposlenika'), $(this).val(), span);
+            }
+				);
+        }
+		);
+    }
+);
+
+    function promijeniTip(idzaposlenika, idtipa, span) {
+        console.log(idzaposlenika);
+        console.log(idtipa);
+        console.log(span);
+        $.post('http://localhost:23530/Skola/PromijeniTipZaposlenika',
+					{ IdZaposlenika: idzaposlenika, IdTipa: idtipa },
+					function (data) {
+					    $(span).html('').fadeIn();
+					    if (data == 'OK') {
+					        $(span).html(data).fadeOut(3000);
+					    }
+					    else {
+					        $(span).html(data);
+					    }
+					}
+		);
+    }
+</script>
