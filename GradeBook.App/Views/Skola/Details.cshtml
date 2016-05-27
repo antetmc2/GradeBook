@@ -1,9 +1,11 @@
 ﻿@model GradeBook.BLL.Skola
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalji o školi";
+    var vrij = Model;
+    int test = 5;
 }
 
-<h2>Details</h2>
+<h2>Detalji o školi:</h2>
 
 <table class="table" style="text-align: center;">
     <tr>
@@ -43,4 +45,24 @@
 <tr>
     <td colspan="2">@Html.ActionLink("Povratak", "Index", "Skola", new { }, new { @class = "btn btn-danger" })</td>
 </tr>
+</table>
+
+<h2>Zaposlenici škole:</h2>
+
+<table class="table" style="text-align: center;">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Ime</th>
+            <th>Prezime</th>
+        </tr>
+    </thead>
+    @foreach(var a in Model.ZaposlenikSkole)
+    {
+        <tr>
+            <td>@a.IdZaposlenika</td>
+            <td>@a.ImeZaposlenika</td>
+            <td>@a.PrezimeZaposlenika</td>
+        </tr>
+    }
 </table>

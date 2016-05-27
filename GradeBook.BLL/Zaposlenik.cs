@@ -155,6 +155,12 @@ namespace GradeBook.BLL
         {
             return DataPortal.Fetch<Zaposlenik>(new SingleCriteria<Zaposlenik, int>(id));
         }
+
+        //TESTIRANJE
+        internal static Zaposlenik Load(DAL.Zaposlenik data)
+        {
+            return DataPortal.FetchChild<Zaposlenik>(data);
+        }
         #endregion
 
         #region Data Access
@@ -239,6 +245,19 @@ namespace GradeBook.BLL
                     db.DataContext.SaveChanges();
                 }
             }
+        }
+
+        //TESTIRANJE
+        private void Child_Fetch(DAL.Zaposlenik data)
+        {
+            LoadProperty(IdZaposlenikaProperty, data.ID);
+            LoadProperty(ImeZaposlenikaProperty, data.ime);
+            LoadProperty(PrezimeZaposlenikaProperty, data.prezime);
+            LoadProperty(DatumPocetkaRadaProperty, data.datumPocetkaRada);
+            LoadProperty(OibProperty, data.oib);
+            LoadProperty(EmailProperty, data.email);
+            LoadProperty(IdTipaProperty, data.IDtipa);
+            LoadProperty(IdSkoleProperty, data.IDskole);
         }
         #endregion
         #endregion

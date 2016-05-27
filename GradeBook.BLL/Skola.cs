@@ -75,6 +75,21 @@ namespace GradeBook.BLL
             get { return GetProperty(TelefonProperty); }
             set { SetProperty(TelefonProperty, value); }
         }
+
+        //TESTIRANJE
+        private static PropertyInfo<ZaposlenikList> ZaposlenikSkoleProperty = RegisterProperty(typeof(Skola), new PropertyInfo<ZaposlenikList>(Reflector.GetPropertyName<Skola>(x => x.ZaposlenikSkole)));
+
+        public ZaposlenikList ZaposlenikSkole
+        {
+            get
+            {
+                if (!(FieldManager.FieldExists(ZaposlenikSkoleProperty)))
+                {
+                    LoadProperty(ZaposlenikSkoleProperty, ZaposlenikList.New());
+                }
+                return GetProperty(ZaposlenikSkoleProperty);
+            }
+        }
         #endregion
 
         #region Calculated Properties
@@ -181,6 +196,8 @@ namespace GradeBook.BLL
                 LoadProperty(MbrSkoleProperty, data.mBrSkole);
                 LoadProperty(OibSkoleProperty, data.oibSkole);
                 LoadProperty(TelefonProperty, data.telefon);
+
+                LoadProperty(ZaposlenikSkoleProperty, ZaposlenikList.Load(data.Zaposlenik.ToArray()));
             }
         }
 
