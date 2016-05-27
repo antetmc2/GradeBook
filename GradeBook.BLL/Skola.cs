@@ -118,6 +118,7 @@ namespace GradeBook.BLL
 
             ValidationRules.AddRule(CommonRules.StringRequired, TelefonProperty);
             ValidationRules.AddRule(CommonRules.StringMaxLength, new CommonRules.MaxLengthRuleArgs(TelefonProperty, 15));
+            ValidationRules.AddRule<Skola>(IsTelefonValid, TelefonProperty);
         }
 
         private static bool IsMbrValid<T>(T target, RuleArgs e) where T : Skola
@@ -125,7 +126,7 @@ namespace GradeBook.BLL
             if (string.IsNullOrEmpty(target.MbrSkole)) return true;
             try
             {
-                Convert.ToInt32(target);
+                Convert.ToInt64(target);
             }
             catch
             {
@@ -140,7 +141,7 @@ namespace GradeBook.BLL
             if (string.IsNullOrEmpty(target.OibSkole)) return true;
             try
             {
-                Convert.ToInt32(target);
+                Convert.ToInt64(target);
             }
             catch
             {
@@ -155,7 +156,7 @@ namespace GradeBook.BLL
             if (string.IsNullOrEmpty(target.Telefon)) return true;
             try
             {
-                Convert.ToInt32(target);
+                Convert.ToInt64(target);
             }
             catch
             {
