@@ -126,7 +126,7 @@ namespace GradeBook.BLL
             if (string.IsNullOrEmpty(target.MbrSkole)) return true;
             try
             {
-                Convert.ToInt64(target);
+                Convert.ToInt64(target.MbrSkole);
             }
             catch
             {
@@ -141,7 +141,7 @@ namespace GradeBook.BLL
             if (string.IsNullOrEmpty(target.OibSkole)) return true;
             try
             {
-                Convert.ToInt64(target);
+                Convert.ToInt64(target.OibSkole);
             }
             catch
             {
@@ -156,7 +156,7 @@ namespace GradeBook.BLL
             if (string.IsNullOrEmpty(target.Telefon)) return true;
             try
             {
-                Convert.ToInt64(target);
+                Convert.ToInt64(target.Telefon);
             }
             catch
             {

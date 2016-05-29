@@ -71,7 +71,7 @@
             
             <span class="rezultat"></span></td>
             <td>@Html.ActionLink("Detalji", "Details", "Zaposlenik", new { id = a.IdZaposlenika }, new { @class = "btn btn-primary" })</td>
-            @using (Html.BeginForm("DeleteZaposlenik", "Zaposlenik", new { id = Model.IdSkole }))
+            @using (Html.BeginForm("Delete", "Zaposlenik", new { id = a.IdZaposlenika }))
             {
                 <td><button type="submit" class="btn btn-danger">Izbriši</button></td>
             }

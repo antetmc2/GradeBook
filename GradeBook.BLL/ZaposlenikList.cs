@@ -8,6 +8,7 @@ using GradeBook.BLL.Properties;
 
 namespace GradeBook.BLL
 {
+    [Serializable()]
     public class ZaposlenikList : BusinessListBase<ZaposlenikList, Zaposlenik>
     {
         #region Constructors

@@ -121,6 +121,20 @@ namespace GradeBook.App.Controllers
         }
 
         [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                Skola.Delete(id);
+            }
+            catch (Exception ex)
+            {
+                TempData["Pogreska"] = ex.Message;
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
         public string PromijeniTipZaposlenika(int IdZaposlenika, int IdTipa)
         {
             try
