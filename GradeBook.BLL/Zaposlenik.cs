@@ -107,6 +107,10 @@ namespace GradeBook.BLL
             ValidationRules.AddRule(CommonRules.StringMaxLength, new CommonRules.MaxLengthRuleArgs(OibProperty, 11));
             ValidationRules.AddRule<Zaposlenik>(IsOibValid, OibProperty);
 
+            ValidationRules.AddRule<Zaposlenik>(IsDateValid, DatumPocetkaRadaProperty);
+            ValidationRules.AddRule<Zaposlenik>(IzabranaSkola, IdSkoleProperty);
+
+
             ValidationRules.AddRule(CommonRules.StringRequired, EmailProperty);
             ValidationRules.AddRule(CommonRules.StringMaxLength, new CommonRules.MaxLengthRuleArgs(EmailProperty, 35));
             ValidationRules.AddRule<Zaposlenik>(IsEmailValid, EmailProperty);
@@ -138,6 +142,30 @@ namespace GradeBook.BLL
                 e.Description = Resources.InvalidEmail;
                 return false;
             }
+        }
+
+        private static bool IsDateValid<T>(T target, RuleArgs e) where T : Zaposlenik
+        {
+            if (target.DatumPocetkaRada > DateTime.Now)
+            {
+                e.Description = Resources.InvalidDate;
+                return false;
+            }
+            return true;
+        }
+
+        private static bool IzabranaSkola<T>(T target, RuleArgs e) where T : Zaposlenik
+        {
+            if (target.IdSkole > 0)
+            {
+                return true;
+            }
+            else
+            {
+                e.Description = Resources.InvalidSkola;
+                return false;
+            }
+
         }
 
         #endregion

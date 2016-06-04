@@ -26,7 +26,7 @@ namespace GradeBook.App.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(string ImeZaposlenika, string PrezimeZaposlenika, DateTime DatumPocetkaRada, string Oib, string Email, int IdSkole, int IdTipa)
+        public ActionResult Create(string ImeZaposlenika, string PrezimeZaposlenika, DateTime DatumPocetkaRada, string Oib, string Email, int IdTipa, int IdSkole = 0)
         {
             Zaposlenik zaposlenik = Zaposlenik.New();
             try
@@ -75,7 +75,7 @@ namespace GradeBook.App.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(int id, string ImeZaposlenika, string PrezimeZaposlenika, DateTime DatumPocetkaRada, string Oib, string Email, int IdSkole, int IdTipa)
+        public ActionResult Edit(int id, string ImeZaposlenika, string PrezimeZaposlenika, DateTime DatumPocetkaRada, string Oib, string Email, int IdTipa, int IdSkole = 0)
         {
             Zaposlenik zaposlenik = null;
             try

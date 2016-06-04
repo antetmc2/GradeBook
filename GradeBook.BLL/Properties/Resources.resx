@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="InvalidDate" xml:space="preserve">
+    <value>Datum ne smije biti kasnije od danas.</value>
+  </data>
   <data name="InvalidEmail" xml:space="preserve">
     <value>E-mail adresa nije ispravno unesena.</value>
   </data>
@@ -131,6 +134,9 @@
   </data>
   <data name="InvalidPhone" xml:space="preserve">
     <value>Broj telefona nije ispravno unesen.</value>
+  </data>
+  <data name="InvalidSkola" xml:space="preserve">
+    <value>Škola mora biti izabrana.</value>
   </data>
   <data name="MethodCallExpected" xml:space="preserve">
     <value>Expected method call.</value>

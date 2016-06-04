@@ -61,6 +61,15 @@ namespace GradeBook.BLL.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Datum ne smije biti kasnije od danas..
+        /// </summary>
+        internal static string InvalidDate {
+            get {
+                return ResourceManager.GetString("InvalidDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to E-mail adresa nije ispravno unesena..
         /// </summary>
         internal static string InvalidEmail {
@@ -102,6 +111,15 @@ namespace GradeBook.BLL.Properties {
         internal static string InvalidPhone {
             get {
                 return ResourceManager.GetString("InvalidPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Škola mora biti izabrana..
+        /// </summary>
+        internal static string InvalidSkola {
+            get {
+                return ResourceManager.GetString("InvalidSkola", resourceCulture);
             }
         }
         
